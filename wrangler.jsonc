@@ -1,7 +1,7 @@
 {
-  "name": "paradise-nursery", // your worker's name
+  "name": "paradise-nursery",
   "compatibility_date": "2025-12-24",
   "assets": {
-    "directory": "./dist"
+    "directory": "./build"
   }
 }
