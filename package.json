@@ -1,0 +1,44 @@
+{
+  "name": "paradise-nursery",
+  "version": "1.0.0",
+  "description": "Paradise Nursery is a React-based houseplant shopping application with Redux for state management.",
+  "main": "src/main.jsx",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "redux-toolkit",
+    "houseplants",
+    "shopping-cart"
+  ],
+  "author": "yahye",
+  "license": "MIT",
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-redux": "^8.1.1",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.47.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

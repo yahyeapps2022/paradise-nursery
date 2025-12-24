@@ -4,9 +4,11 @@ import CartItem from "./components/CartItem";
 import AboutUs from "./components/AboutUs";
 import "./App.css";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const App = () => {
-  const cartCount = useSelector((state) => state.cart.totalQuantity);
+  const cartCount = useSelector(state => state.cart.totalQuantity);
+  const [showProducts, setShowProducts] = useState(false);
 
   return (
     <BrowserRouter>
@@ -25,9 +27,8 @@ const App = () => {
             element={
               <div style={{ padding: "20px", color: "white" }}>
                 <h1>Paradise Nursery</h1>
-                <Link to="/plants">
-                  <button>Get Started</button>
-                </Link>
+                <button onClick={() => setShowProducts(true)}>Get Started</button>
+                {showProducts && <ProductList />}
               </div>
             }
           />
