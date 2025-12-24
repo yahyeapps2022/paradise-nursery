@@ -1,41 +1,44 @@
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { increaseQty, decreaseQty, removeFromCart } from "../redux/CartSlice";
-import { Link } from "react-router-dom";
+import { updateQuantity, removeItem } from "../redux/CartSlice";
 
 const CartItem = () => {
   const dispatch = useDispatch();
-  const items = useSelector((state) => state.cart.items);
-
-  const total = items.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const cartItems = useSelector((state) => state.cart.cartItems || []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h2>Shopping Cart</h2>
-
-      {items.map(item => (
-        <div key={item.id} className="product">
-          <p>{item.name}</p>
-          <p>Price: ${item.price}</p>
-          <p>Total: ${item.price * item.quantity}</p>
-
-          <button onClick={() => dispatch(increaseQty(item.id))}>+</button>
-          <button onClick={() => dispatch(decreaseQty(item.id))}>-</button>
-          <button onClick={() => dispatch(removeFromCart(item.id))}>
-            Delete
-          </button>
-        </div>
-      ))}
-
-      <h3>Total Amount: ${total}</h3>
-
-      <button>Checkout (Coming Soon)</button>
-      <br />
-      <Link to="/plants">
-        <button>Continue Shopping</button>
-      </Link>
+    <div className="cart">
+      {cartItems.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        cartItems.map((item) => (
+          <div key={item.id} className="cart-item">
+            <img src={item.thumbnail} alt={item.name} width={80} />
+            <div>{item.name}</div>
+            <div>Unit Price: ${item.price}</div>
+            <div>
+              <button
+                onClick={() =>
+                  item.quantity > 1 &&
+                  dispatch(updateQuantity({ id: item.id, quantity: item.quantity - 1 }))
+                }
+              >
+                -
+              </button>
+              {item.quantity}
+              <button
+                onClick={() =>
+                  dispatch(updateQuantity({ id: item.id, quantity: item.quantity + 1 }))
+                }
+              >
+                +
+              </button>
+            </div>
+            <button onClick={() => dispatch(removeItem(item.id))}>Remove</button>
+            <div>Total: ${item.price * item.quantity}</div>
+          </div>
+        ))
+      )}
     </div>
   );
 };
